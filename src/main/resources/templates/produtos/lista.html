@@ -12,43 +12,43 @@
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
           crossorigin="anonymous">
 </head>
+
 <body>
+    <main>
+        <h1>Lista de Produtos</h1>
 
-    <h1>Lista de Produtos</h1>
 
+        <div th:if="${sucesso}">
+            <h2 th:text="${sucesso}"></h2>
+        </div>
 
-    <div th:if="${sucesso}">
-        <h2 th:text="${sucesso}"></h2>
-    </div>
+        <div th:if="${falha}">
+            <h2 th:text="${falha}"></h2>
+        </div>
 
-    <div th:if="${falha}">
-        <h2 th:text="${falha}"></h2>
-    </div>
+        <div th:if="${#lists.isEmpty(lista)}">
+            <h4>A lista está vazia! Por favor clique abaixo para cadastrar um produto</h4>
+        </div>
 
-    <div th:if="${#lists.isEmpty(lista)}">
-        <h4>A lista está vazia! Por favor clique abaixo para cadastrar um produto</h4>
-    </div>
+        <div th:unless="${#lists.isEmpty(lista)}">
+            <table>
+                <tr>
+                    <td>Título</td>
+                    <td>Descrição</td>
+                    <td>Páginas</td>
+                </tr>
 
-    <div th:unless="${#lists.isEmpty(lista)}">
-        <table>
-            <tr>
-                <td>Título</td>
-                <td>Descrição</td>
-                <td>Páginas</td>
-            </tr>
-
-            <tr th:each="produto : ${lista}">
-                <td>
-                    <a th:href="@{|/produtos/detalhe/${produto.id}|}"
-                       th:text="${produto.titulo}"></a>
-                </td>
-                <td th:text="${produto.descricao}"></td>
-                <td th:text="${produto.paginas}"></td>
-            </tr>
-        </table>
-    </div>
-
-    <!--<a th:href="@{/produtos/form}">Cadastrar produto</a>-->
-
+                <tr th:each="produto : ${lista}">
+                    <td>
+                        <a th:href="@{|/produtos/detalhe/${produto.id}|}"
+                           th:text="${produto.titulo}"></a>
+                    </td>
+                    <td th:text="${produto.descricao}"></td>
+                    <td th:text="${produto.paginas}"></td>
+                </tr>
+            </table>
+        </div>
+    </main>
 </body>
+
 </html>
