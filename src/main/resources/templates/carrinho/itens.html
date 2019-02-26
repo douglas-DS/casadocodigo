@@ -59,8 +59,8 @@
 						</tr>
 					</thead>
 
-					<tbody class="" th:each="item : ${@carrinhoCompras.itens}" >
-						<tr class="table-light">
+					<tbody class="">
+						<tr th:each="item : ${@carrinhoCompras.itens}" class="table-light">
 							<th scope="row">
 								<a th:href="${'/produtos/detalhe/' + item.produto.id}">
 									<img  src="http://fabricadesites.fcsh.unl.pt/ihc/wp-content/uploads/sites/15/2018/01/livro001.jpg"
