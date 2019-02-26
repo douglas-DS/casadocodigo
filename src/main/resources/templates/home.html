@@ -44,32 +44,32 @@
 
         <main>
 
-            <div class="container-fluid">
+            <div class="container">
 
-                <div class="">
-                    <h1 class="border-bottom" style="color: #FFA500">Últimos lançamentos</h1>
-                    <nav class="navbar navbar-light">
-                    <ul class="justify-content-around navbar-nav" th:each="produto : ${produtos}">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="${'/produtos/detalhe/' + produto.id}">
-                                <div>
-                                    <img width="200px" height="300px"
-                                         alt="Capa Livro"
-                                         src="http://fabricadesites.fcsh.unl.pt/ihc/wp-content/uploads/sites/15/2018/01/livro001.jpg">
-                                </div>
-                                <!--<p style="display: inline-block;" class="text-black-50 align-text-bottom text-nowrap" th:text="${produto.titulo}"></p>-->
-                                <p class="text-center justify-content-center" th:value="${produto.titulo}">Titulo Livro</p>
-                            </a>
-                        </li>
+                <section>
+                    <h1 class="border-bottom mb-5" style="color: #FFA500">Últimos lançamentos</h1>
+                    <ul class="nav justify-content-center">
+                       <li th:each="produto : ${produtos}" class="nav-item" style="width: 260px; height: 400px">
+                           <a class="nav-link text-black-50" th:href="${'/produtos/detalhe/' + produto.id}">
+                            <div class="" style="width: 18rem;">
+                                <img
+                                    class=""
+                                    width="205px" height="290px"
+                                    alt="Capa Livro"
+                                    src="https://cdn-images-1.medium.com/max/882/1*ZIG8pV_LR79eddEdRllGbA.jpeg"
+                                >
+                            </div>
+                               <p class="text-wrap text-center text-uppercase font-weight-bold" style="width: 15rem;" th:text="${produto.titulo}"></p>
+                           </a>
+                       </li>
                     </ul>
-                    </nav>
-                </div>
+                </section>
 
             </div>
 
         </main>
 
-        <footer class="footer shadow" style="padding-bottom: 100px; padding-top: 50px; background-color: #FFA500;">
+        <footer class="footer shadow" style="padding-bottom: 100px; padding-top: 50px; margin-top: 50px; background-color: #FFA500;">
             <div class="container">
 
                 <div class="row">
