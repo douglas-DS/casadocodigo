@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Seu carrinho de compras - Casa do código</title>
+		<link rel="icon" th:href="@{/imagens/cdc-icon.png}" type="icon" />
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+			  rel="stylesheet"
+			  integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+			  crossorigin="anonymous">
+	</head>
+
+	<body>
+
+		<header class="cabecalhoPrincipal">
+
+			<nav class="navbar shadow p-3 mb-5 rounded" style="background-color: #FFA500;">
+
+				<ul class="justify-content-center nav navbar-collapse">
+
+					<li>
+						<a class="navbar-brand text-white" href="#"><img height="60px" width="50px" src="" alt="Casa do Código Logo" th:src="@{/imagens/cdc-icon.png}">
+							Casa do Código</a>
+					</li>
+					<li><a class="nav-link text-white border-right" href="#">Programação</a></li>
+					<li><a class="nav-link text-white border-right" href="#">Back-end</a></li>
+					<li><a class="nav-link text-white border-right" href="#">Agile</a></li>
+					<li><a class="nav-link text-white border-right" href="#">Front-end</a></li>
+					<li><a class="nav-link text-white border-right" href="#">Java</a></li>
+					<li><a class="nav-link text-white border-right" href="#">Mobile</a></li>
+					<li><a class="nav-link text-white" href="#">Outros</a></li>
+					<li>
+						<h6 class="align-text-top text-white">Seu carrinho</h6>
+						<a class="nav-link text-white" th:href="@{/carrinho}">
+							<img width="60px" height="40px" src="https://cdn2.iconfinder.com/data/icons/miscellaneous-iii-glyph-style/150/shopping-bag-512.png">
+							<span th:text="${'(' + @carrinhoCompras.getQuantidade() + ')'}" ></span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+
+
+			<div class="container">
+				<h2 class="border-bottom">Seu carrinho</h2>
+
+				<table class="table table-borderless">
+					<thead>
+						<tr class="table-active">
+							<th></th>
+							<th class="text-center" width="65%" scope="col">Item</th>
+							<th width="10%" scope="col">Preço</th>
+							<th width="10%" scope="col">Qtd</th>
+							<th width="10%" scope="col">Total</th>
+							<th width="5%"> </th>
+						</tr>
+					</thead>
+
+					<tbody class="" th:each="item : ${@carrinhoCompras.itens}" >
+						<tr class="table-light">
+							<th scope="row">
+								<a th:href="${'/produtos/detalhe/' + item.produto.id}">
+									<img  src="http://fabricadesites.fcsh.unl.pt/ihc/wp-content/uploads/sites/15/2018/01/livro001.jpg"
+										  alt="Capa Livro"
+										  width="70px"
+										  height="100px">
+								</a>
+							</th>
+							<td th:text="${item.produto.titulo + ' (' + item.tipoPreco + ')'}"></td>
+							<td th:text="${'R$' + item.preco}"></td>
+							<td>
+								<input type="number" min="0" th:id="quantidade" th:name="quantidade" th:value="${@carrinhoCompras.getQuantidade(item)}" />
+							</td>
+							<td th:text="${'R$' + @carrinhoCompras.getTotal(item)}" ></td>
+							<td>
+								<form th:action="${'/carrinho/remover/' + item.produto.id + '/' + item.tipoPreco}" method="POST">
+									<input type="image"
+									th:src="@{/imagens/excluir.png}"
+									src=""
+									alt="Excluir"
+									title="Excluir"/>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+
+					<tfoot>
+						<tr class="table-active">
+							<td colspan="3">
+								<form th:action="@{/pagamento/finalizar}" method="POST">
+									<input class="btn btn-warning text-uppercase text-white" type="submit" name="checkout" value="Finalizar compra" />
+								</form>
+							</td>
+							<td></td>
+							<td class="numeric-cell" th:text="${'R$' + @carrinhoCompras.total}" ></td>
+							<td></td>
+						</tr>
+					</tfoot>
+
+				</table>
+				<a href="/produtos">Veja todos os livros que publicamos</a>
+			</div>
+
+		</main>
+
+		<footer class="footer shadow" style="padding-bottom: 100px; padding-top: 50px; background-color: #FFA500; margin-top: 100px; margin-bottom: 0">
+			<div class="container">
+
+				<div class="row">
+
+					<div class="float-left" style="padding-right: 50px;">
+						<a href="#" title="Voltar ao topo da página">
+							<img src=""
+								 height="80px"
+								 width="100px"
+								 th:src="@{/imagens/cdc-icon.png}"
+								 alt="CDC logo">
+						</a>
+					</div>
+
+					<div class="col-sm">
+						<h5 class="text-uppercase text-black">Links da casa do código</h5>
+						<ul class="list-unstyled">
+							<li>
+								<a class="text-white" href="#">Sobre a Casa do Código</a>
+							</li>
+							<li>
+								<a class="text-white" href="#">Nossas Coleções</a>
+							</li>
+							<li>
+								<a class="text-white" href="#">Quero ser um autor</a>
+							</li>
+							<li>
+								<a class="text-white" href="#">Perguntas frequentes</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="col-sm">
+						<h5 class="text-uppercase text-black">Receba novidades e lançamentos</h5>
+						<form method="post" action="#">
+							<ul class="list-unstyled">
+								<li>
+									<input type="email" placeholder="seu@email.com">
+									<button class="btn btn-sm btn-dark">ok</button>
+								</li>
+								<li>
+									<p class="text-uppercase mt-5">Este site aceita</p>
+								</li>
+								<li>
+									<img src="" th:src="@{/imagens/pagseguro.png}" alt="PagSeguro logo">
+									<img src="" th:src="@{/imagens/paypal.png}" alt="PayPal logo">
+								</li>
+							</ul>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</footer>
+
+	</body>
+</html>
+

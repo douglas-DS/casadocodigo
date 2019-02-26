@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Livros de Java, Android, iPhone, Ruby, PHP e muito mais - Casa do Código</title>
+    <link rel="icon" th:href="@{/imagens/cdc-icon.png}" type="icon" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
+</head>
+
+<header class="cabecalhoPrincipal">
+
+    <nav class="navbar shadow p-3 mb-5 rounded" style="background-color: #FFA500;">
+
+        <ul class="justify-content-center nav navbar-collapse">
+
+            <li>
+                <a class="navbar-brand text-white" th:href="@{/}"><img height="60px" width="50px" src="" alt="Casa do Código Logo" th:src="@{/imagens/cdc-icon.png}">
+                    Casa do Código</a>
+            </li>
+            <li><a class="nav-link text-white border-right" href="#">Programação</a></li>
+            <li><a class="nav-link text-white border-right" href="#">Back-end</a></li>
+            <li><a class="nav-link text-white border-right" href="#">Agile</a></li>
+            <li><a class="nav-link text-white border-right" href="#">Front-end</a></li>
+            <li><a class="nav-link text-white border-right" href="#">Java</a></li>
+            <li><a class="nav-link text-white border-right" href="#">Mobile</a></li>
+            <li><a class="nav-link text-white" href="#">Outros</a></li>
+            <li>
+                <h6 class="align-text-top text-white">Seu carrinho</h6>
+                <a class="nav-link text-white" th:href="@{/carrinho}">
+                    <img width="60px" height="40px" src="https://cdn2.iconfinder.com/data/icons/miscellaneous-iii-glyph-style/150/shopping-bag-512.png">
+                    <span th:text="${'(' + @carrinhoCompras.getQuantidade() + ')'}" ></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<body>
+    <main>
+        <div class="container">
+            <h1 class="border-bottom">Formulário de cadastramento de produtos</h1>
+            <form action="#" th:action="@{/produtos}" th:object="${produto}" method="post" enctype="multipart/form-data" >
+                <div class="form-group">
+                    <label>Título <input class="form-control" type="text" placeholder="Digite um título" th:field="*{titulo}"></label>
+                    <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+                </div>
+                <div class="form-group">
+                    <label>Descrição <textarea class="form-control" rows="3" th:field="*{descricao}"></textarea></label>
+                    <span th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
+                </div>
+                <div class="form-group">
+                    <label>Páginas <input class="form-control" type="text" th:field="*{paginas}"></label>
+                    <span th:if="${#fields.hasErrors('paginas')}" th:errors="*{paginas}"></span>
+                </div>
+                <div class="form-group">
+                    <label>Data de Lançamento <input class="form-control" type="text" th:field="*{dataLancamento}"></label>
+                    <span th:if="${#fields.hasErrors('dataLancamento')}" th:erros="*{dataLancamento}" ></span>
+                </div>
+
+                <div class="form-group" th:each="tipo : ${tipos}" >
+
+                    <label th:text="${tipo}"></label>
+                    <input class="form-control" th:type="text" th:field="*{precos[__${tipoStat.index}__].valor}"/>
+                    <input th:type="hidden" th:id="'precos' + ${tipoStat.index} + '.tipo'" th:name="'precos[' + ${tipoStat.index} + '].tipo'" th:value="${tipo}">
+                </div>
+
+                <div class="form-group">
+                    <label>Sumário</label>
+                    <input type="file" name="sumario" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+
+                <button class="btn btn-warning text-uppercase mb-5" type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

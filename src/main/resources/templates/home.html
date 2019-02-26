@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Livros de Java, SOA, Android, iPhone, Ruby on Rails e muito mais - Casa do Código</title>
+        <link rel="icon" th:href="@{/imagens/cdc-icon.png}" type="icon" />
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+              crossorigin="anonymous">
+    </head>
+
+    <body>
+
+        <header class="cabecalhoPrincipal">
+
+            <nav class="navbar shadow p-3 mb-5 rounded" style="background-color: #FFA500;">
+
+                <ul class="justify-content-center nav navbar-collapse">
+
+                    <li>
+                        <a class="navbar-brand text-white" th:href="@{/}"><img height="60px" width="50px" src="" alt="Casa do Código Logo" th:src="@{/imagens/cdc-icon.png}">
+                            Casa do Código</a>
+                    </li>
+                    <li><a class="nav-link text-white border-right" href="#">Programação</a></li>
+                    <li><a class="nav-link text-white border-right" href="#">Back-end</a></li>
+                    <li><a class="nav-link text-white border-right" href="#">Agile</a></li>
+                    <li><a class="nav-link text-white border-right" href="#">Front-end</a></li>
+                    <li><a class="nav-link text-white border-right" href="#">Java</a></li>
+                    <li><a class="nav-link text-white border-right" href="#">Mobile</a></li>
+                    <li><a class="nav-link text-white" href="#">Outros</a></li>
+                    <li>
+                        <h6 class="align-text-top text-white">Seu carrinho</h6>
+                        <a class="nav-link text-white" th:href="@{/carrinho}">
+                            <img width="60px" height="40px" src="https://cdn2.iconfinder.com/data/icons/miscellaneous-iii-glyph-style/150/shopping-bag-512.png">
+                            <span th:text="${'(' + @carrinhoCompras.getQuantidade() + ')'}" ></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+
+            <div class="container-fluid">
+
+                <div class="">
+                    <h1 class="border-bottom" style="color: #FFA500">Últimos lançamentos</h1>
+                    <nav class="navbar navbar-light">
+                    <ul class="justify-content-around navbar-nav" th:each="produto : ${produtos}">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="${'/produtos/detalhe/' + produto.id}">
+                                <div>
+                                    <img width="200px" height="300px"
+                                         alt="Capa Livro"
+                                         src="http://fabricadesites.fcsh.unl.pt/ihc/wp-content/uploads/sites/15/2018/01/livro001.jpg">
+                                </div>
+                                <!--<p style="display: inline-block;" class="text-black-50 align-text-bottom text-nowrap" th:text="${produto.titulo}"></p>-->
+                                <p class="text-center justify-content-center" th:value="${produto.titulo}">Titulo Livro</p>
+                            </a>
+                        </li>
+                    </ul>
+                    </nav>
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer class="footer shadow" style="padding-bottom: 100px; padding-top: 50px; background-color: #FFA500;">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="float-left" style="padding-right: 50px;">
+                        <a href="#" title="Voltar ao topo da página">
+                            <img src=""
+                                 height="80px"
+                                 width="100px"
+                                 th:src="@{/imagens/cdc-icon.png}"
+                                 alt="CDC logo">
+                        </a>
+                    </div>
+
+                    <div class="col-sm">
+                        <h5 class="text-uppercase text-black">Links da casa do código</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a class="text-white" href="#">Sobre a Casa do Código</a>
+                            </li>
+                            <li>
+                                <a class="text-white" href="#">Nossas Coleções</a>
+                            </li>
+                            <li>
+                                <a class="text-white" href="#">Quero ser um autor</a>
+                            </li>
+                            <li>
+                                <a class="text-white" href="#">Perguntas frequentes</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-sm">
+                        <h5 class="text-uppercase text-black">Receba novidades e lançamentos</h5>
+                        <form method="post" action="#">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <input type="email" placeholder="seu@email.com">
+                                    <button class="btn btn-sm btn-dark">ok</button>
+                                </li>
+                                <li>
+                                    <p class="text-uppercase mt-5">Este site aceita</p>
+                                </li>
+                                <li>
+                                    <img src="" th:src="@{/imagens/pagseguro.png}" alt="PagSeguro logo">
+                                    <img src="" th:src="@{/imagens/paypal.png}" alt="PayPal logo">
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    </body>
+</html>
