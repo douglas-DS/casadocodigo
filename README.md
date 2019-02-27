@@ -1,5 +1,5 @@
 # casadocodigo
-## Spring Boot Project using thymeleaf and bootstrap in the views.
+## Full stack Spring Boot Project. View: Thymeleaf + Bootstrap.
 ## Reference web page of this project: https://www.casadocodigo.com.br/.
 
 How its work
