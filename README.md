@@ -2,7 +2,7 @@
 ## Full stack Spring Boot Project. View: Thymeleaf + Bootstrap.
 ## Reference web page of this project: https://www.casadocodigo.com.br/.
 
-###How its work
+##How its work
 
 The project is configured to work with a Mysql database "casadocodigo".
 
