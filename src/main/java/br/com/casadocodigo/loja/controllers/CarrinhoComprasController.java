@@ -55,4 +55,15 @@ public class CarrinhoComprasController {
         return new ModelAndView("redirect:/carrinho");
     }
 
+    @PostMapping("atualizar/{produtoId}/{tipoPreco}")
+        public ModelAndView atualizar(@PathVariable Integer produtoId, @PathVariable TipoPreco tipoPreco, Integer quantidade) {
+            Produto produto = repository.findProdutoById(produtoId)     ;
+            CarrinhoItem item = new CarrinhoItem(produto, tipoPreco);
+
+            carrinho.atualizar(item, quantidade);
+
+            return new ModelAndView("redirect:/carrinho");
+        }
+
+
 }

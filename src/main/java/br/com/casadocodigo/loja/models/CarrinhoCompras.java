@@ -61,4 +61,10 @@ public class CarrinhoCompras implements Serializable {
     public void limparCarrinho() {
         itens.clear();
     }
+
+    public void atualizar(CarrinhoItem item, Integer quantidade) {
+         itens.put(item, quantidade);
+
+    }
+
 }
