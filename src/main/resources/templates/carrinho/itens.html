@@ -78,8 +78,6 @@
 											   style="width: 40px; height: 20px"/>
 									</button>
 								</form>
-								<input type="number" min="0" th:id="quantidade" th:name="quantidade" th:value="${@carrinhoCompras.getQuantidade(item)}"
-									   style="width: 40px; height: 20px"/>
 							</td>
 							<td th:text="${'R$' + @carrinhoCompras.getTotal(item)}" ></td>
 							<td>
