@@ -2,7 +2,6 @@ package br.com.casadocodigo.loja.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,7 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Getter @Setter @ToString
+@Getter @Setter
 public class Produto {
 
     @Id
@@ -64,5 +63,13 @@ public class Produto {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "titulo='" + titulo + '\'' +
+                ", precos=" + precos +
+                '}';
     }
 }
