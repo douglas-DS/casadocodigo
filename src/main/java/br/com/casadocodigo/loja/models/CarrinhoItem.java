@@ -1,9 +1,12 @@
 package br.com.casadocodigo.loja.models;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Data
 public class CarrinhoItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,22 +27,6 @@ public class CarrinhoItem implements Serializable {
         return produto.precoPara(tipoPreco);
     }
 
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
-
-    public TipoPreco getTipoPreco() {
-        return tipoPreco;
-    }
-
-    public void setTipoPreco(TipoPreco tipoPreco) {
-        this.tipoPreco = tipoPreco;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,11 +41,4 @@ public class CarrinhoItem implements Serializable {
         return Objects.hash(produto, tipoPreco);
     }
 
-    @Override
-    public String toString() {
-        return "CarrinhoItem{" +
-                "produto=" + produto +
-                ", tipoPreco=" + tipoPreco +
-                '}';
-    }
 }

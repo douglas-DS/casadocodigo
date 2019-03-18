@@ -1,5 +1,8 @@
 package br.com.casadocodigo.loja.models;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -12,6 +15,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Getter @Setter @ToString
 public class Produto {
 
     @Id
@@ -49,62 +53,6 @@ public class Produto {
                 .getValor();
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Integer getPaginas() {
-        return paginas;
-    }
-
-    public void setPaginas(Integer paginas) {
-        this.paginas = paginas;
-    }
-
-    public Calendar getDataLancamento() {
-        return dataLancamento;
-    }
-
-    public void setDataLancamento(Calendar dataLancamento) {
-        this.dataLancamento = dataLancamento;
-    }
-
-    public List<Preco> getPrecos() {
-        return precos;
-    }
-
-    public void setPrecos(List<Preco> precos) {
-        this.precos = precos;
-    }
-
-    public String getSumarioPath() {
-        return sumarioPath;
-    }
-
-    public void setSumarioPath(String sumarioPath) {
-        this.sumarioPath = sumarioPath;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -116,13 +64,5 @@ public class Produto {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Produto{" +
-                "titulo='" + titulo + '\'' +
-                ", precos=" + precos +
-                '}';
     }
 }
